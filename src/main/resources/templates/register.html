@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+
+    <h1>User Register</h1>
+
+    <form action="/saveUser"
+          method="post"
+          enctype="multipart/form-data">
+
+        Name:
+        <input type="text" name="name">
+        <br><br>
+
+        Email:
+        <input type="email" name="email">
+        <br><br>
+
+        Password:
+        <input type="password" name="password">
+        <br><br>
+
+        Role:
+        <select name="role">
+            <option value="Student">Student</option>
+            <option value="Employer">Employer</option>
+        </select>
+        <br><br>
+
+        Profile Photo:
+        <input type="file" name="photo">
+        <br><br>
+
+        <button type="submit">
+            Register
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/">Back to Home</a>
+
+</body>
+</html>

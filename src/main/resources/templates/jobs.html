@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Available Jobs</title>
+</head>
+<body>
+
+    <h1>Available Jobs</h1>
+
+    <form action="/jobs" method="get">
+        <input type="text" name="keyword" placeholder="Search by title, company, location" th:value="${keyword}">
+        <button type="submit">Search</button>
+    </form>
+
+    <br>
+
+    <div th:if="${#lists.isEmpty(jobs)}">
+        <p>No jobs found...</p>
+    </div>
+
+    <div th:unless="${#lists.isEmpty(jobs)}">
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Company</th>
+                <th>Location</th>
+                <th>Action</th>
+            </tr>
+
+            <tr th:each="job : ${jobs}">
+                <td th:text="${job.id}"></td>
+                <td th:text="${job.title}"></td>
+                <td th:text="${job.company}"></td>
+                <td th:text="${job.location}"></td>
+                <td>
+                    <a th:href="@{/editJob/{id}(id=${job.id})}">Edit</a>
+                    |
+                    <a th:href="@{/deleteJob/{id}(id=${job.id})}">Delete</a>
+                    |
+                    <a th:href="@{/applyForm/{title}(title=${job.title})}">Apply</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+    <a href="/">Back to Home</a>
+    <br><br>
+    <a href="/applications">View Applications</a>
+
+</body>
+</html>

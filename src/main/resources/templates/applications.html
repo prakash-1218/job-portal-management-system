@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Applications</title>
+</head>
+<body>
+
+    <h1>Applications</h1>
+
+    <div th:if="${#lists.isEmpty(applications)}">
+        <p>No applications yet...</p>
+    </div>
+
+    <div th:unless="${#lists.isEmpty(applications)}">
+
+        <table border="1">
+
+            <tr>
+                <th>ID</th>
+                <th>Applicant Name</th>
+                <th>Job Title</th>
+                <th>Status</th>
+                <th>Applied Date</th>
+                <th>Applied Time</th>
+                <th>Resume</th>
+                <th>Action</th>
+            </tr>
+
+            <tr th:each="app : ${applications}">
+
+                <td th:text="${app.id}"></td>
+
+                <td th:text="${app.applicantName}"></td>
+
+                <td th:text="${app.jobTitle}"></td>
+
+                <td th:text="${app.status}"></td>
+
+                <td th:text="${app.appliedDate}"></td>
+
+                <td th:text="${app.appliedTime}"></td>
+
+                <td>
+                    <a th:href="@{'/uploads/resume/' + ${app.resumeFile}}"
+   target="_blank"
+   th:if="${app.resumeFile != null}">
+    View Resume
+</a>
+                </td>
+
+                <td>
+
+                    <a th:href="@{/shortlist/{id}(id=${app.id})}">
+                        Shortlist
+                    </a>
+
+                    |
+
+                    <a th:href="@{/reject/{id}(id=${app.id})}">
+                        Reject
+                    </a>
+
+                    |
+
+                    <a th:href="@{/deleteApplication/{id}(id=${app.id})}"
+                       onclick="return confirm('Delete this application?')">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+    <br>
+
+    <a href="/">Back to Home</a>
+
+    <br><br>
+
+    <a href="/jobs">Back to Jobs</a>
+
+</body>
+</html>

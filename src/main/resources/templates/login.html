@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+</head>
+<body>
+
+    <h1>User Login</h1>
+
+    <!-- LOGIN FORM -->
+    <form th:action="@{/checkLogin}" method="post">
+
+        <label>Email:</label>
+        <input type="email"
+               name="email"
+               required>
+
+        <br><br>
+
+        <label>Password:</label>
+        <input type="password"
+               name="password"
+               required>
+
+        <br><br>
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <!-- LOGIN ERROR -->
+    <p th:if="${message}"
+       th:text="${message}">
+    </p>
+
+    <br><br>
+
+    <!-- FORGOT PASSWORD -->
+    <h3>Forgot Password</h3>
+
+    <form action="/forgotPassword"
+          method="post">
+
+        <label>
+            Enter Registered Email:
+        </label>
+
+        <input type="email"
+               name="email"
+               required>
+
+        <button type="submit">
+            Send Password
+        </button>
+
+    </form>
+
+    <!-- FORGOT PASSWORD MESSAGE -->
+    <p th:if="${message}"
+       th:text="${message}">
+    </p>
+
+    <br>
+
+    <a href="/">
+        Back to Home
+    </a>
+
+</body>
+</html>
